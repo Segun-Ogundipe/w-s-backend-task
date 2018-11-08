@@ -1,7 +1,4 @@
 <svg width="80px" height="34px" viewBox="0 0 80 34" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
-<title>W&amp;S Logo Copy</title>
-<desc>Created with Sketch.</desc>
-<defs></defs>
 <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
 <g id="Home-links" sketch:type="MSArtboardGroup" transform="translate(-66.000000, -72.000000)" fill="#B9B9B9">
 <g id="W&amp;S-Logo-Copy" sketch:type="MSLayerGroup" transform="translate(66.000000, 72.000000)">
