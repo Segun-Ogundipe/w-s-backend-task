@@ -4,7 +4,7 @@
 
 According to wikipedia, TOTP (Time-based one-time password; RFC 6238) is a means of generating unique one-time password, by taking its uniqueness from the current time. TOTP is an extension of HOTP, a one-time password (OTP) algorithm based on HMAC (RFC 4226).
 
-The basic idea of TOTP is to generate a token that will serve as an extra means of security for internet applications. An example is your GTB app that requires the use of a hardware (or _737#_ service) to generate a token to validate a transaction or Github.com that uses a validator app or SMS to provide a token for 2-factor authentication.
+The basic idea of TOTP is to generate a token that will serve as an extra means of security for internet applications. An example is your GTB app that requires the use of a hardware (or _\*737#_ service) to generate a token to validate a transaction or Github.com that uses a validator app or SMS to provide a token for 2-factor authentication.
 
 TOTP uses a shared secret, which is available to both the server and the token generating device/platform.
 
