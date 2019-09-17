@@ -1,4 +1,7 @@
 import express from 'express';
+import Helpers from './utils/helpers';
+
+const { errorResponse } = Helpers;
 
 const app = express();
 app.use(express.json());
@@ -11,5 +14,11 @@ app.use((req, res, next) => {
 });
 
 app.use('*', (req, res) => {
-    res.status(404).json({(false, 404, 'You typed in the wrong URL');}
-  });
+  errorResponse(res, 404, 'You typed in the wrong URL');
+});
+
+const PORT = process.env.PORT || 3000;
+
+app.listen(PORT, () => console.log(`App running on port: ${PORT}`));
+
+export default app;
