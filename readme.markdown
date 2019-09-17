@@ -1,5 +1,8 @@
 # Witts & Stratts Backend Developer Task
 
+[![Coverage Status](https://coveralls.io/repos/github/Segun-Ogundipe/w-s-backend-task/badge.svg?branch=develop)](https://coveralls.io/github/Segun-Ogundipe/w-s-backend-task?branch=develop)
+[![Build Status](https://travis-ci.com/Segun-Ogundipe/w-s-backend-task.svg?branch=develop)](https://travis-ci.com/Segun-Ogundipe/w-s-backend-task)
+
 ## Overview
 
 According to wikipedia, TOTP (Time-based one-time password; RFC 6238) is a means of generating unique one-time password, by taking its uniqueness from the current time. TOTP is an extension of HOTP, a one-time password (OTP) algorithm based on HMAC (RFC 4226).
