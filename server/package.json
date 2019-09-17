@@ -1,0 +1,55 @@
+{
+  "name": "W-S-Backend-Task",
+  "version": "1.0.0",
+  "description": "This app generates and verifies TOTP. According to wikipedia, TOTP (Time-based one-time password; RFC 6238) is a means of generating unique one-time password, by taking its uniqueness from the current time. TOTP is an extension of HOTP, a one-time password (OTP) algorithm based on HMAC (RFC 4226).",
+  "main": "index.js",
+  "scripts": {
+    "build": "npm run clean && mkdir dist && babel server -d dist --copy-files",
+    "clean": "rm -rf dist",
+    "coverage": "nyc npm test && nyc report --reporter=text-lcov | coveralls",
+    "dev": "nodemon",
+    "start": "node -r dotenv/config -r dist/index.js",
+    "test": "nyc --reporter=html --reporter=text mocha -r @babel/register -r dotenv/config server/test/*.js --exit"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Segun-Ogundipe/w-s-backend-task.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Segun-Ogundipe/w-s-backend-task/issues"
+  },
+  "homepage": "https://github.com/Segun-Ogundipe/w-s-backend-task#readme",
+  "dependencies": {
+    "dotenv": "^8.1.0",
+    "express": "^4.17.1"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.6.0",
+    "@babel/core": "^7.6.0",
+    "@babel/preset-env": "^7.6.0",
+    "@babel/register": "^7.6.0",
+    "chai": "^4.2.0",
+    "chai-http": "^4.3.0",
+    "coveralls": "^3.0.6",
+    "eslint": "^6.4.0",
+    "eslint-config-airbnb-base": "^14.0.0",
+    "eslint-plugin-import": "^2.18.2",
+    "mocha": "^6.2.0",
+    "mocha-lcov-reporter": "^1.3.0",
+    "nodemon": "^1.19.2",
+    "nyc": "^14.1.1"
+  },
+  "nodemonConfig": {
+    "ignore": [
+      "server/test/*.js"
+    ],
+    "watch": [
+      "server"
+    ],
+    "exec": "node -r @babel/register -r dotenv/config -r server/index.js",
+    "ext": "js"
+  }
+}
