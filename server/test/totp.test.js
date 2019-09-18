@@ -19,11 +19,11 @@ describe('OTP Test', () => {
 
   describe('Generate OTP', () => {
     it('should successfully generate otp', async () => {
-      const response = await request.get('/api/otp');
+      const response = await request.get('/api/totp');
 
       expect(response.body.status).to.equal('success');
-      expect(response.body.code).to.equal(201);
-      expect(response.body.data).to.have.key('otp');
+      expect(response.body.code).to.equal(200);
+      expect(response.body.data).to.have.key('totp');
     });
   });
 });

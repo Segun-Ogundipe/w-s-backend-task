@@ -1,6 +1,6 @@
 import express from 'express';
 import Helpers from './utils/helpers';
-import routes from './routes/otp';
+import routes from './routes/totp';
 
 const { errorResponse } = Helpers;
 

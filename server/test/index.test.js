@@ -11,6 +11,6 @@ describe('Wildcard Route Test', () => {
     const response = await chai.request(server).get('/');
     expect(response.body.status).to.equal('fail');
     expect(response.body.code).to.equal(404);
-    expect(response.body.error.message).to.equal('You typed in the wrong URL');
+    expect(response.body.message).to.equal('You typed in the wrong URL');
   });
 });
