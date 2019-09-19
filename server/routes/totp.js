@@ -2,8 +2,9 @@ import { Router } from 'express';
 import TotpController from '../controllers/TotpController';
 
 const router = Router();
-const { send } = TotpController;
+const { generateTotp, validateTotp } = TotpController;
 
-router.get('/totp', send);
+router.get('/totp', generateTotp);
+router.post('/totp', validateTotp);
 
 export default router;

@@ -14,10 +14,8 @@ class Totp {
   constructor(key) {
     this.key = key;
     this.totp = 0;
+    this.countDown = 0;
     this.update();
-
-    const epoch = Math.round(new Date().getTime() / 1000.0);
-    this.countDown = 30 - (epoch % 30);
   }
 
   /**
@@ -110,6 +108,8 @@ class Totp {
    * @returns {number} - The count down in seconds
    */
   getCountDown() {
+    const epoch = Math.round(new Date().getTime() / 1000.0);
+    this.countDown = 30 - (epoch % 30);
     return this.countDown;
   }
 }

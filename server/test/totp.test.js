@@ -34,7 +34,16 @@ describe('TOTP Test', () => {
 
       expect(response.body.status).to.equal('success');
       expect(response.body.code).to.equal(200);
-      expect(response.body.data).to.have.key('status');
+      expect(response.body.data.status).to.equal('The code you supplied is true');
+    });
+
+    it('should fail validation', async () => {
+      const body = { totp: 123456 };
+      const response = await request.post('/api/totp').send(body);
+
+      expect(response.body.status).to.equal('fail');
+      expect(response.body.code).to.equal(401);
+      expect(response.body.message).to.equal('The code you supplied is not correct');
     });
   });
 });

@@ -1,5 +1,6 @@
 import helpers from '../utils/helpers';
 import Totp from '../utils/Totp';
+import ApiError from '../utils/ApiError';
 
 const { errorResponse, successResponse } = helpers;
 /**
@@ -9,7 +10,7 @@ const { errorResponse, successResponse } = helpers;
  */
 class TotpController {
   /**
-   * Static method for sending generated Totp to the user.
+   * Static method for sending generated TOTP to the user.
    *
    * @static
    * @param {Request} req - The request from the browser.
@@ -17,7 +18,7 @@ class TotpController {
    * @returns { JSON } A JSON response with the generated TOTP.
    * @memberof TotpController
    */
-  static send(req, res) {
+  static generateTotp(req, res) {
     try {
       const totp = new Totp(process.env.TOTP_SECRET);
 
@@ -26,6 +27,34 @@ class TotpController {
         {
           totp: totp.getTotp(),
           countDown: `New totp in ${totp.getCountDown()} seconds`
+        },
+        200
+      );
+    } catch (err) {
+      errorResponse(res, err.status || 500, err.message);
+    }
+  }
+
+  /**
+   * Static method for validating  TOTP provided by the user.
+   *
+   * @static
+   * @param {Request} req - The request from the browser.
+   * @param {Response} res - The response returned by the method.
+   * @returns { JSON } A JSON response with the status of a validated TOTP.
+   * @memberof TotpController
+   */
+  static validateTotp(req, res) {
+    try {
+      const { totp } = req.body;
+      const generatedTotp = new Totp(process.env.TOTP_SECRET).getTotp();
+
+      if (totp != generatedTotp) throw new ApiError(401, 'The code you supplied is not correct');
+
+      successResponse(
+        res,
+        {
+          status: 'The code you supplied is true'
         },
         200
       );
