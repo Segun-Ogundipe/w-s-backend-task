@@ -13,7 +13,7 @@ class Helpers {
    * @memberof Helpers
    * @returns {JSON} - A JSON success response.
    */
-  static successResponse(res, data, code = 200) {
+  static successResponse(res, data, code) {
     return res.status(code).json({
       code,
       status: 'success',
@@ -27,23 +27,14 @@ class Helpers {
    * @param {Response} res - Response object.
    * @param {number} code -  HTTP Status code, default is 500.
    * @param {string} message -  Error message.
-   * @param {object|array  } errors -  A collection of  error message.
    * @memberof Helpers
    * @returns {JSON} - A JSON failure response.
    */
-  static errorResponse(
-    res,
-    code = 500,
-    message = 'Some error occurred while processing your Request',
-    errors
-  ) {
+  static errorResponse(res, code, message) {
     return res.status(code).json({
       status: 'fail',
       code,
-      error: {
-        message,
-        errors
-      }
+      message
     });
   }
 }

@@ -24,7 +24,8 @@
   "homepage": "https://github.com/Segun-Ogundipe/w-s-backend-task#readme",
   "dependencies": {
     "dotenv": "^8.1.0",
-    "express": "^4.17.1"
+    "express": "^4.17.1",
+    "jssha": "^2.3.1"
   },
   "devDependencies": {
     "@babel/cli": "^7.6.0",
