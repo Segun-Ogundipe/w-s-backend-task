@@ -1,3 +1,4 @@
+/* eslint-disable class-methods-use-this */
 import jsSHA from 'jssha';
 /**
  * This class generate and validate totp
@@ -14,6 +15,9 @@ class Totp {
     this.key = key;
     this.totp = 0;
     this.update();
+
+    const epoch = Math.round(new Date().getTime() / 1000.0);
+    this.countDown = 30 - (epoch % 30);
   }
 
   /**
@@ -56,13 +60,13 @@ class Totp {
     const base32chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ234567';
     let bits = '';
     let hex = '';
-    for (let i = 0; i <= base32.length; i++) {
+    for (let i = 0; i <= base32.length; i += 1) {
       const val = base32chars.indexOf(base32.charAt(i).toUpperCase());
       bits += this.leftpad(val.toString(2), 5, '0');
     }
     for (let i = 0; i + 4 <= bits.length; i += 4) {
       const chunk = bits.substr(i, 4);
-      hex = hex + parseInt(chunk, 2).toString(16);
+      hex += parseInt(chunk, 2).toString(16);
     }
     return hex;
   }
@@ -87,8 +91,6 @@ class Totp {
     let totp = (this.hex2dec(hmac.substr(offset * 2, 8)) & this.hex2dec('7fffffff')) + '';
     totp = totp.substr(totp.length - 6, 6);
     this.totp = totp;
-
-    return true;
   }
 
   /**
@@ -99,6 +101,16 @@ class Totp {
    */
   getTotp() {
     return this.totp;
+  }
+
+  /**
+   * This method returns the seconds left to generate a new totp
+   *
+   * @memberof Totp
+   * @returns {number} - The count down in seconds
+   */
+  getCountDown() {
+    return this.countDown;
   }
 }
 

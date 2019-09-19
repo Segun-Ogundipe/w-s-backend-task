@@ -21,7 +21,14 @@ class TotpController {
     try {
       const totp = new Totp(process.env.TOTP_SECRET);
 
-      successResponse(res, { totp: totp.getTotp() }, 200);
+      successResponse(
+        res,
+        {
+          totp: totp.getTotp(),
+          countDown: `New totp in ${totp.getCountDown()} seconds`
+        },
+        200
+      );
     } catch (err) {
       errorResponse(res, err.status || 500, err.message);
     }
