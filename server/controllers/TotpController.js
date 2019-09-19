@@ -25,7 +25,7 @@ class TotpController {
       successResponse(
         res,
         {
-          totp: totp.getTotp(),
+          token: totp.getTotp(),
           countDown: `New totp in ${totp.getCountDown()} seconds`
         },
         200
@@ -46,10 +46,10 @@ class TotpController {
    */
   static validateTotp(req, res) {
     try {
-      const { totp } = req.body;
+      const { token } = req.body;
       const generatedTotp = new Totp(process.env.TOTP_SECRET).getTotp();
 
-      if (totp != generatedTotp) throw new ApiError(401, 'The code you supplied is not correct');
+      if (token != generatedTotp) throw new ApiError(401, 'The code you supplied is not correct');
 
       successResponse(
         res,

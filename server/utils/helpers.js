@@ -13,7 +13,7 @@ class Helpers {
    * @memberof Helpers
    * @returns {JSON} - A JSON success response.
    */
-  static successResponse(res, data, code = 200) {
+  static successResponse(res, data, code) {
     return res.status(code).json({
       code,
       status: 'success',
@@ -30,11 +30,7 @@ class Helpers {
    * @memberof Helpers
    * @returns {JSON} - A JSON failure response.
    */
-  static errorResponse(
-    res,
-    code = 500,
-    message = 'Some error occurred while processing your Request'
-  ) {
+  static errorResponse(res, code, message) {
     return res.status(code).json({
       status: 'fail',
       code,
