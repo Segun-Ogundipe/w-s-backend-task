@@ -1,12 +1,31 @@
+/* eslint-disable require-jsdoc */
 function generateCode() {
-  /**Replace this function block with logic for retrieving the generated code from the server */
-  let generateCode = document.querySelector('.generated-code');
-  generateCode.innerHTML = Math.round(Math.random() * 1000000);
+  const generate = document.querySelector('.generated-code');
+  fetch('http://localhost:3000/api/totp')
+    .then((response) => response.json())
+    .then((body) => {
+      generate.innerHTML = body.data.token;
+    });
 }
 
 function validateCode() {
-  /**Replace this function block with logic for validating the token. You should replace the "validated-code-status" with the result of your validation */
-  let validatedCodeStatus = document.querySelector(".validated-code-status");
-  let status = ["The code you supplied is true", "The code you supplied is not correct"];
-  validatedCodeStatus.innerHTML = status[Math.round(Math.random())];
+  const validatedCodeStatus = document.querySelector('.validated-code-status');
+  const input = document.querySelector('.token-input');
+
+  fetch('http://localhost:3000/api/totp', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ token: input.value })
+  })
+    .then((response) => response.json())
+    .then((body) => {
+      if (body.data) {
+        validatedCodeStatus.innerHTML = body.data.status;
+      } else {
+        validatedCodeStatus.innerHTML = body.message;
+      }
+    })
+    .catch((error) => {
+      console.error(error);
+    });
 }

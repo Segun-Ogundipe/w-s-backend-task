@@ -25,11 +25,11 @@ class TotpMiddleware {
 
       if (token === undefined) throw new ApiError(400, 'Please provide a valid token');
 
+      if (token.toString().length !== 6) throw new ApiError(400, 'token must be six digits');
+
       if (!number.test(token)) {
         throw new ApiError(400, 'token must be of type number');
       }
-
-      if (token.toString().length !== 6) throw new ApiError(400, 'token must be six digits');
 
       next();
     } catch (err) {
