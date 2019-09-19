@@ -1,7 +1,7 @@
 /* eslint-disable require-jsdoc */
 function generateCode() {
   const generate = document.querySelector('.generated-code');
-  fetch('http://localhost:3000/api/totp')
+  fetch('https://w-s-totp.herokuapp.com/api/totp')
     .then((response) => response.json())
     .then((body) => {
       generate.innerHTML = body.data.token;
@@ -12,7 +12,7 @@ function validateCode() {
   const validatedCodeStatus = document.querySelector('.validated-code-status');
   const input = document.querySelector('.token-input');
 
-  fetch('http://localhost:3000/api/totp', {
+  fetch('https://w-s-totp.herokuapp.com/api/totp', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ token: input.value })
