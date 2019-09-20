@@ -58,7 +58,7 @@ class Totp {
     const base32chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ234567';
     let bits = '';
     let hex = '';
-    for (let i = 0; i <= base32.length; i += 1) {
+    for (let i = 0; i < base32.length; i += 1) {
       const val = base32chars.indexOf(base32.charAt(i).toUpperCase());
       bits += this.leftpad(val.toString(2), 5, '0');
     }
@@ -77,7 +77,10 @@ class Totp {
    * @returns {string} - A hex string
    */
   update() {
-    const key = this.base32tohex(process.env.TOTP_SECRET);
+    let key = this.base32tohex(process.env.TOTP_SECRET);
+    if ((key.length % 2) !== 0) {
+      key = key.slice(0, -1);
+    }
     const epoch = Math.round(new Date().getTime() / 1000.0);
     const time = this.leftpad(this.dec2hex(Math.floor(epoch / 30)), 16, '0');
 
